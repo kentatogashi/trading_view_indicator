@@ -1,0 +1,53 @@
+//@version=3
+study(title="Multi Moving Average", shorttitle="MMA", overlay=true)
+t1 = "ma1"
+t2 = "ma2"
+t3 = "ma3"
+t4 = "ma4"
+ma_type = input(defval="EMA", options=["EMA", "SMA", "WMA"])
+len1 = input(5, minval=1, title=t1)
+len2 = input(25, minval=1, title=t2)
+len3 = input(75, minval=1, title=t3)
+len4 = input(200, minval=1, title=t4)
+src = input(close, title="Source")
+
+out1 = if ma_type == "EMA"
+    ema(src, len1)
+else
+    if ma_type == "SMA"
+        sma(src, len1)
+    else
+        if ma_type == "WMA"
+            wma(src, len1)
+            
+out2 = if ma_type == "EMA"
+    ema(src, len2)
+else
+    if ma_type == "SMA"
+        sma(src, len2)
+    else
+        if ma_type == "WMA"
+            wma(src, len2)
+
+out3 = if ma_type == "EMA"
+    ema(src, len3)
+else
+    if ma_type == "SMA"
+        sma(src, len3)
+    else
+        if ma_type == "WMA"
+            wma(src, len3)
+
+out4 = if ma_type == "EMA"
+    ema(src, len4)
+else
+    if ma_type == "SMA"
+        sma(src, len4)
+    else
+        if ma_type == "WMA"
+            wma(src, len4)
+
+plot(out1, color=blue, title=t1)
+plot(out2, color=purple, title=t2)
+plot(out3, color=fuchsia, title=t3)
+plot(out4, color=orange, title=t4)
